@@ -1,0 +1,93 @@
+<%- include('../layouts/header_ed2030') %>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="/css/ed2030.css">
+
+<div class="container py-5">
+    <!-- Header of the course -->
+    <div class="text-center mb-5">
+        <span class="badge bg-danger px-3 py-2 fs-6 mb-2">Luyện Tập Ngữ Văn Lớp 8</span>
+        <h1 class="display-5 fw-bold text-dark">Bài học: Từ ngữ địa phương</h1>
+        <p class="lead text-muted">Chương trình Ngữ Văn Lớp 8 - Học tập tương tác dựa trên Thuyết Kiến Tạo</p>
+    </div>
+
+    <!-- Progress Tracker Steps -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="d-flex justify-content-between position-relative progress-steps-container">
+                <div class="progress-line" id="steps-progress-bar" style="width: 72%;"></div>
+                <div class="step-item completed" id="step-0">
+                    <div class="step-icon"><i class="bi bi-info-circle"></i></div>
+                    <div class="step-label">Giới thiệu</div>
+                </div>
+                <div class="step-item completed" id="step-1">
+                    <div class="step-icon"><i class="bi bi-play-btn"></i></div>
+                    <div class="step-label">1. Xem Video</div>
+                </div>
+                <div class="step-item completed" id="step-2">
+                    <div class="step-icon"><i class="bi bi-grid-3x3-gap"></i></div>
+                    <div class="step-label">2. Màn 1: Ghép đôi</div>
+                </div>
+                <div class="step-item completed" id="step-3">
+                    <div class="step-icon"><i class="bi bi-chat-left-quote"></i></div>
+                    <div class="step-label">3. Màn 2: Hội thoại</div>
+                </div>
+                <div class="step-item active" id="step-4">
+                    <div class="step-icon"><i class="bi bi-cursor-fill"></i></div>
+                    <div class="step-label">4. Màn 3: Nhận diện</div>
+                </div>
+                <div class="step-item locked" id="step-5">
+                    <div class="step-icon"><i class="bi bi-trophy"></i></div>
+                    <div class="step-label">Kết quả</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container with dynamic views -->
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            
+            <!-- SECTION 4: GAME MÀN 3 (WORD CLICKER) -->
+            <div class="card p-4 p-md-5 shadow-sm border-0 mb-4 section-card active-section" id="section-4">
+                <h3 class="fw-bold mb-3 text-danger-custom"><i class="bi bi-cursor-fill me-2"></i>Màn chơi 3: Nhận biết từ ngữ địa phương trong văn bản</h3>
+                <p class="text-secondary mb-4"><strong>Nhiệm vụ (Bloom: Vận dụng):</strong> Đọc câu văn dưới đây và click chuột chọn trực tiếp vào tất cả các **từ ngữ địa phương**. Từ đúng sẽ hiện màu <span class="badge bg-success">Xanh lá</span>, chọn sai sẽ hiện màu <span class="badge bg-danger">Đỏ</span>.</p>
+                
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-dark mb-0">Câu hỏi <span id="current-clicker-indicator" class="text-danger">1/5</span></h5>
+                </div>
+                
+                <div class="p-4 border rounded bg-white text-dark text-center fs-4 lh-lg word-clicker-area mb-4 shadow-sm" id="clicker-text-container">
+                    <!-- Text words generated dynamically -->
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3 px-2">
+                    <span class="text-secondary fw-semibold">Mục tiêu: Tìm thấy <span id="clicker-target-count">3</span> từ địa phương</span>
+                    <span class="text-secondary fw-semibold">Đã tìm thấy: <span id="clicker-correct-count" class="text-success fs-5">0</span> / <span id="clicker-total-target">3</span></span>
+                </div>
+
+                <div id="clicker-feedback" class="alert alert-success text-center d-none mt-3"></div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="/ed2030/man_2" class="btn btn-outline-secondary px-4 py-2"><i class="bi bi-arrow-left me-2"></i>Quay lại</a>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-warning px-4 py-2 fw-bold d-none" id="next-clicker-btn" onclick="nextClickerQuestion()">Câu tiếp theo <i class="bi bi-arrow-right ms-2"></i></button>
+                        <button class="btn btn-success px-4 py-2 fw-bold d-none" id="submit-clicker-btn" onclick="submitClickerGame()">Nộp bài <i class="bi bi-check-circle ms-2"></i></button>
+                        <a href="/ed2030/ket_qua" class="btn btn-primary px-4 py-2 fw-bold d-none" id="clicker-next-btn">Hoàn thành & Xem kết quả <i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/ed2030/common.js?v=2"></script>
+<script src="/js/ed2030/man_3.js?v=2"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initWordClickerGame();
+    });
+</script>
+
+<%- include('../layouts/footer') %>

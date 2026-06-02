@@ -1,0 +1,32 @@
+{
+  "name": "web_btl",
+  "version": "1.0.0",
+  "description": "Bài tập lớn môn thiết kế lập trình web",
+  "keywords": [
+    "nodejs"
+  ],
+  "homepage": "https://github.com/TrungLoze/Web_BTL#readme",
+  "bugs": {
+    "url": "https://github.com/TrungLoze/Web_BTL/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrungLoze/Web_BTL.git"
+  },
+  "license": "ISC",
+  "author": "Htrung, PLong, HTrang",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.16.1",
+    "bootstrap-icons": "^1.13.1",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
+    "nodemon": "^3.1.14"
+  }
+}

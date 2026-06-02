@@ -1,0 +1,146 @@
+<%- include('../layouts/header_ed2030') %>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="/css/ed2030.css">
+
+<div class="container py-5">
+    <!-- Header of the course -->
+    <div class="text-center mb-5">
+        <span class="badge bg-danger px-3 py-2 fs-6 mb-2" id="dev-unlock-badge" style="cursor: pointer;" title="Nhấp đúp chuột để bỏ qua xem video (Dành cho Giáo viên/Dev)">Luyện Tập Ngữ Văn Lớp 8</span>
+        <h1 class="display-5 fw-bold text-dark">Bài học: Từ ngữ địa phương</h1>
+        <p class="lead text-muted">Chương trình Ngữ Văn Lớp 8 - Học tập tương tác dựa trên Thuyết Kiến Tạo</p>
+    </div>
+
+    <!-- Progress Tracker Steps -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="d-flex justify-content-between position-relative progress-steps-container">
+                <div class="progress-line" id="steps-progress-bar" style="width: 0%;"></div>
+                <div class="step-item active" id="step-0">
+                    <div class="step-icon"><i class="bi bi-info-circle"></i></div>
+                    <div class="step-label">Giới thiệu</div>
+                </div>
+                <div class="step-item locked" id="step-1">
+                    <div class="step-icon"><i class="bi bi-play-btn"></i></div>
+                    <div class="step-label">1. Xem Video</div>
+                </div>
+                <div class="step-item locked" id="step-2">
+                    <div class="step-icon"><i class="bi bi-grid-3x3-gap"></i></div>
+                    <div class="step-label">2. Màn 1: Ghép đôi</div>
+                </div>
+                <div class="step-item locked" id="step-3">
+                    <div class="step-icon"><i class="bi bi-chat-left-quote"></i></div>
+                    <div class="step-label">3. Màn 2: Hội thoại</div>
+                </div>
+                <div class="step-item locked" id="step-4">
+                    <div class="step-icon"><i class="bi bi-cursor-fill"></i></div>
+                    <div class="step-label">4. Màn 3: Nhận diện</div>
+                </div>
+                <div class="step-item locked" id="step-5">
+                    <div class="step-icon"><i class="bi bi-trophy"></i></div>
+                    <div class="step-label">Kết quả</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container with dynamic views -->
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            
+            <!-- SECTION 0: INTRODUCTION -->
+            <div class="card p-4 p-md-5 shadow-sm border-0 mb-4 section-card active-section" id="section-0">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <h2 class="fw-bold mb-4 text-danger-custom">Chào mừng đến với bài học!</h2>
+                        <p class="text-secondary mb-3">Bài học này giúp các em học sinh lớp 8 nhận biết và hiểu cách sử dụng từ ngữ địa phương 3 miền Bắc, Trung, Nam. Nhằm duy trì sự trong sáng của Tiếng Việt đồng thời tôn trọng sự đa dạng văn hóa vùng miền.</p>
+                        
+                        <div class="p-3 bg-light rounded-3 border-danger-left mb-3">
+                            <strong>Chủ đề:</strong> Từ ngữ địa phương – SGK Lớp 8 Bài 1 (Thực hành tiếng Việt) Tập 1.
+                        </div>
+                        
+                        <h5 class="fw-bold mt-4 mb-3"><i class="bi bi-bookmark-star text-danger-custom me-2"></i>Mục tiêu bài học:</h5>
+                        <ul class="list-unstyled text-secondary">
+                            <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i><strong>Nhận biết:</strong> Nhận biết được từ ngữ địa phương trong giao tiếp và văn bản.</li>
+                            <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i><strong>Hiểu:</strong> Hiểu được ý nghĩa và sắc thái của một số từ địa phương phổ biến.</li>
+                            <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i><strong>Vận dụng:</strong> Vận dụng từ địa phương đúng ngữ cảnh và giữ gìn sự trong sáng của tiếng Việt.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-5 text-center d-none d-md-block">
+                        <i class="bi bi-journal-richtext text-danger-custom" style="font-size: 8rem; opacity: 0.85;"></i>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted small"><i class="bi bi-cpu me-1"></i>Thuyết Kiến Tạo & Thang đo Bloom</span>
+                    <button type="button" class="btn btn-primary px-4 py-2 fw-bold" data-bs-toggle="modal" data-bs-target="#nameModal">Bắt đầu bài học <i class="bi bi-arrow-right ms-2"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Name Modal -->
+<div class="modal fade" id="nameModal" tabindex="-1" aria-labelledby="nameModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-primary text-white border-0">
+        <h5 class="modal-title fw-bold" id="nameModalLabel"><i class="bi bi-person-badge me-2"></i>Nhập tên của em</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p class="text-secondary mb-4">Vui lòng nhập tên của em để hệ thống lưu lại kết quả và xếp hạng sau khi hoàn thành bài học nhé!</p>
+        <div class="mb-3">
+          <label for="studentName" class="form-label fw-bold">Họ và Tên</label>
+          <input type="text" class="form-control form-control-lg" id="studentName" placeholder="Ví dụ: Nguyễn Văn A" required>
+          <div class="invalid-feedback">Vui lòng nhập tên của em.</div>
+        </div>
+      </div>
+      <div class="modal-footer border-0 pb-4 pe-4">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary px-4 fw-bold" onclick="submitNameAndStart()">Bắt đầu <i class="bi bi-play-circle ms-2"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/ed2030/common.js"></script>
+<script>
+    function submitNameAndStart() {
+        const nameInput = document.getElementById('studentName');
+        const name = nameInput.value.trim();
+        
+        if (!name) {
+            nameInput.classList.add('is-invalid');
+            return;
+        }
+        
+        sessionStorage.setItem('ed2030_studentName', name);
+        sessionStorage.setItem('ed2030_score', 100);
+        sessionStorage.setItem('ed2030_wrongAnswers', 0);
+        sessionStorage.setItem('ed2030_startTime', new Date().getTime());
+        
+        window.location.href = '/ed2030/xem_video';
+    }
+
+    // Allow pressing Enter to submit
+    document.addEventListener('DOMContentLoaded', () => {
+        const nameInput = document.getElementById('studentName');
+        if (nameInput) {
+            nameInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    submitNameAndStart();
+                }
+            });
+            
+            // Auto focus when modal is shown
+            const nameModal = document.getElementById('nameModal');
+            nameModal.addEventListener('shown.bs.modal', () => {
+                nameInput.focus();
+            });
+        }
+    });
+</script>
+
+<%- include('../layouts/footer') %>

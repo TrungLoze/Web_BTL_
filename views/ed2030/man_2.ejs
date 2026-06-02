@@ -1,0 +1,114 @@
+<%- include('../layouts/header_ed2030') %>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/ed2030.css">
+
+    <div class="container py-5">
+        <!-- Header of the course -->
+        <div class="text-center mb-5">
+            <span class="badge bg-danger px-3 py-2 fs-6 mb-2">Luyện Tập Ngữ Văn Lớp 8</span>
+            <h1 class="display-5 fw-bold text-dark">Bài học: Từ ngữ địa phương</h1>
+            <p class="lead text-muted">Chương trình Ngữ Văn Lớp 8 - Học tập tương tác dựa trên Thuyết Kiến Tạo</p>
+        </div>
+
+        <!-- Progress Tracker Steps -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <div class="d-flex justify-content-between position-relative progress-steps-container">
+                    <div class="progress-line" id="steps-progress-bar" style="width: 54%;"></div>
+                    <div class="step-item completed" id="step-0">
+                        <div class="step-icon"><i class="bi bi-info-circle"></i></div>
+                        <div class="step-label">Giới thiệu</div>
+                    </div>
+                    <div class="step-item completed" id="step-1">
+                        <div class="step-icon"><i class="bi bi-play-btn"></i></div>
+                        <div class="step-label">1. Xem Video</div>
+                    </div>
+                    <div class="step-item completed" id="step-2">
+                        <div class="step-icon"><i class="bi bi-grid-3x3-gap"></i></div>
+                        <div class="step-label">2. Màn 1: Ghép đôi</div>
+                    </div>
+                    <div class="step-item active" id="step-3">
+                        <div class="step-icon"><i class="bi bi-chat-left-quote"></i></div>
+                        <div class="step-label">3. Màn 2: Hội thoại</div>
+                    </div>
+                    <div class="step-item locked" id="step-4">
+                        <div class="step-icon"><i class="bi bi-cursor-fill"></i></div>
+                        <div class="step-label">4. Màn 3: Nhận diện</div>
+                    </div>
+                    <div class="step-item locked" id="step-5">
+                        <div class="step-icon"><i class="bi bi-trophy"></i></div>
+                        <div class="step-label">Kết quả</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Container with dynamic views -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <!-- SECTION 3: GAME MÀN 2 (CONVERSATION BLANK FILLER) -->
+                <div class="card p-4 p-md-5 shadow-sm border-0 mb-4 section-card active-section" id="section-3">
+                    <h3 class="fw-bold mb-3 text-danger-custom"><i class="bi bi-chat-left-quote me-2"></i>Màn chơi 2:
+                        Điền từ vào đoạn hội thoại</h3>
+                    <p class="text-secondary mb-4"><strong>Nhiệm vụ (Bloom: Vận dụng):</strong> Đọc kỹ đoạn hội thoại
+                        giao tiếp giữa các học sinh vùng miền và chọn từ địa phương thích hợp nhất để điền vào chỗ
+                        trống.</p>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold text-dark mb-0">Câu hỏi <span id="current-question-indicator"
+                                class="text-danger">1/5</span></h5>
+                    </div>
+
+                    <div class="chat-container border rounded p-4 bg-light mb-4">
+                        <div class="d-flex align-items-start mb-3 chat-bubble-right justify-content-start">
+                            <div
+                                class="avatar-chat bg-danger text-white rounded-circle me-3 d-flex align-items-center justify-content-center">
+                                Mẹ
+                            </div>
+                            <div class="bg-white p-3 rounded shadow-sm border text-dark message-box position-relative"
+                                id="dialogue-text">
+                                <!-- Text generated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-light border rounded mb-4">
+                        <h5 class="fw-bold text-dark mb-3"><i class="bi bi-ui-checks me-2"></i>Lựa chọn của em:</h5>
+                        <div class="row g-2" id="options-container">
+                            <!-- Options generated dynamically -->
+                        </div>
+                    </div>
+
+                    <div id="dialog-feedback" class="mt-3 p-3 rounded-3 d-none"></div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/ed2030/man_1" class="btn btn-outline-secondary px-4 py-2"><i
+                                class="bi bi-arrow-left me-2"></i>Quay lại</a>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-warning px-4 py-2 fw-bold d-none" id="next-question-btn"
+                                onclick="nextDialogQuestion()">Câu tiếp theo <i
+                                    class="bi bi-arrow-right ms-2"></i></button>
+                            <button class="btn btn-info px-4 py-2 fw-bold d-none" id="retry-btn"
+                                onclick="startRetry()">Làm lại câu sai <i
+                                    class="bi bi-arrow-clockwise ms-2"></i></button>
+                            <a href="/ed2030/man_3" class="btn btn-primary px-4 py-2 fw-bold d-none"
+                                id="dialog-next-btn">Vào Màn 3: Nhận diện từ <i class="bi bi-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/ed2030/common.js?v=2"></script>
+    <script src="/js/ed2030/man_2.js?v=2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initDialogGame();
+        });
+    </script>
+
+    <%- include('../layouts/footer') %>

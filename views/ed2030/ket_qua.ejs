@@ -1,0 +1,176 @@
+<%- include('../layouts/header_ed2030') %>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="/css/ed2030.css">
+
+<div class="container py-5">
+    <!-- Header of the course -->
+    <div class="text-center mb-5">
+        <span class="badge bg-danger px-3 py-2 fs-6 mb-2">Luyện Tập Ngữ Văn Lớp 8</span>
+        <h1 class="display-5 fw-bold text-dark">Bài học: Từ ngữ địa phương</h1>
+        <p class="lead text-muted">Chương trình Ngữ Văn Lớp 8 - Học tập tương tác dựa trên Thuyết Kiến Tạo</p>
+    </div>
+
+    <!-- Progress Tracker Steps -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="d-flex justify-content-between position-relative progress-steps-container">
+                <div class="progress-line" id="steps-progress-bar" style="width: 100%;"></div>
+                <div class="step-item completed" id="step-0">
+                    <div class="step-icon"><i class="bi bi-info-circle"></i></div>
+                    <div class="step-label">Giới thiệu</div>
+                </div>
+                <div class="step-item completed" id="step-1">
+                    <div class="step-icon"><i class="bi bi-play-btn"></i></div>
+                    <div class="step-label">1. Xem Video</div>
+                </div>
+                <div class="step-item completed" id="step-2">
+                    <div class="step-icon"><i class="bi bi-grid-3x3-gap"></i></div>
+                    <div class="step-label">2. Màn 1: Ghép đôi</div>
+                </div>
+                <div class="step-item completed" id="step-3">
+                    <div class="step-icon"><i class="bi bi-chat-left-quote"></i></div>
+                    <div class="step-label">3. Màn 2: Hội thoại</div>
+                </div>
+                <div class="step-item completed" id="step-4">
+                    <div class="step-icon"><i class="bi bi-cursor-fill"></i></div>
+                    <div class="step-label">4. Màn 3: Nhận diện</div>
+                </div>
+                <div class="step-item active" id="step-5">
+                    <div class="step-icon"><i class="bi bi-trophy"></i></div>
+                    <div class="step-label">Kết quả</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container with dynamic views -->
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            
+            <!-- SECTION 5: FINAL SCOREBOARD & SUMMARY -->
+            <div class="card p-4 p-md-5 shadow-sm border-0 mb-4 text-center section-card active-section" id="section-5">
+                <div class="mb-4">
+                    <i class="bi bi-trophy text-warning animate-bounce" style="font-size: 6rem;"></i>
+                </div>
+                <h2 class="fw-bold text-dark">Chúc mừng em đã hoàn thành bài học!</h2>
+                <p class="text-secondary lead">Em đã hoàn thành xuất sắc chuỗi thử thách tương tác của bài học <strong>"Từ ngữ địa phương"</strong>.</p>
+                
+                <!-- Score Cards -->
+                <div class="row justify-content-center g-3 my-4">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="p-3 bg-light border rounded h-100">
+                            <div class="text-muted text-uppercase mb-1 small">Màn 1: Ghép đôi</div>
+                            <h4 class="fw-bold text-primary mb-0" id="m1-score">0 / 0</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="p-3 bg-light border rounded h-100">
+                            <div class="text-muted text-uppercase mb-1 small">Màn 2: Hội thoại</div>
+                            <h4 class="fw-bold text-primary mb-0" id="m2-score">0 / 0</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="p-3 bg-light border rounded h-100">
+                            <div class="text-muted text-uppercase mb-1 small">Màn 3: Nhận diện</div>
+                            <h4 class="fw-bold text-primary mb-0" id="m3-score">0 / 0</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="p-3 bg-danger-subtle border border-danger rounded h-100">
+                            <div class="text-danger text-uppercase mb-1 small fw-bold">Tổng Điểm</div>
+                            <h3 class="fw-bold text-danger mb-0" id="final-score">0 / 0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center g-3 mb-4">
+                    <div class="col-sm-6">
+                        <div class="p-3 bg-light border rounded">
+                            <div class="text-muted text-uppercase mb-1 small">Thời gian</div>
+                            <h3 class="fw-bold text-dark mb-0" id="final-time">00:00</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 bg-light border rounded">
+                            <div class="text-muted text-uppercase mb-1 small">Đánh giá</div>
+                            <h3 class="fw-bold text-success mb-0" id="final-rating">Xuất Sắc</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Constructivist encouragement badge -->
+                <div class="p-4 rounded-3 border-danger-left bg-light text-start mb-4">
+                    <h5 class="fw-bold text-danger-custom mb-2"><i class="bi bi-shield-check me-2"></i>Huy hiệu đạt được</h5>
+                    <p class="text-dark fw-bold fs-5 mb-1 text-danger">NGƯỜI BẢO VỆ SỰ TRONG SÁNG TIẾNG VIỆT</p>
+                    <p class="text-secondary small mb-0">Huy hiệu này biểu dương ý thức học tập và giữ gìn nét đẹp trong sáng của tiếng Việt, trân quý tiếng nói giữa các vùng miền khác nhau.</p>
+                </div>
+
+                <!-- Leaderboard Section -->
+                <div class="mt-5 mb-4">
+                    <div class="row g-4 text-start">
+                        <!-- Personal Leaderboard (Left) -->
+                        <div class="col-lg-6">
+                            <h4 class="fw-bold text-primary mb-3"><i class="bi bi-clock-history me-2"></i>Lịch sử của tôi</h4>
+                            <div class="border rounded bg-white shadow-sm overflow-hidden h-100">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light text-muted small text-uppercase">
+                                            <tr>
+                                                <th scope="col" class="text-center py-3" style="width: 80px;">Lần</th>
+                                                <th scope="col" class="py-3">Ngày làm</th>
+                                                <th scope="col" class="text-center py-3">Điểm</th>
+                                                <th scope="col" class="text-center py-3">Thời gian</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="personal-leaderboard-body">
+                                            <tr><td colspan="4" class="text-center py-4 text-muted">Chưa có lịch sử làm bài.</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Global Leaderboard (Right) -->
+                        <div class="col-lg-6">
+                            <h4 class="fw-bold text-danger mb-3"><i class="bi bi-globe me-2"></i>Top 10 Lớp</h4>
+                            <div class="border rounded bg-white shadow-sm overflow-hidden h-100">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle mb-0">
+                                        <thead class="table-light text-muted small text-uppercase">
+                                            <tr>
+                                                <th scope="col" class="text-center py-3" style="width: 80px;">Hạng</th>
+                                                <th scope="col" class="py-3">Học sinh</th>
+                                                <th scope="col" class="text-center py-3">Điểm</th>
+                                                <th scope="col" class="text-center py-3">Thời gian</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="global-leaderboard-body">
+                                            <tr><td colspan="4" class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm text-danger me-2" role="status"></div> Đang tải dữ liệu...</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <a href="/ed2030/gioi_thieu" class="btn btn-outline-danger px-4 py-2"><i class="bi bi-arrow-counterclockwise me-2"></i>Lớp học lại</a>
+                    <a href="/" class="btn btn-primary px-4 py-2 fw-bold">Quay về trang chủ</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/ed2030/common.js?v=2"></script>
+<script src="/js/ed2030/ket_qua.js?v=2"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        showFinalResults();
+    });
+</script>
+
+<%- include('../layouts/footer') %>

@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #ffffff;             /* Main body background: white */
+  --bg-surface: #f8fafc;             /* Cards and content boxes: very light gray-blue */
+  --text-primary: #0f172a;           /* Titles and main text: black/dark slate */
+  --text-secondary: #475569;         /* Secondary text: dark slate gray */
+  --accent-color: #b91c1c;           /* Primary accent (Red) */
+  --accent-hover: #991b1b;           /* Hover accent (Darker Red) */
+  --border-color: #e2e8f0;           /* Light borders */
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* Red Navbar styling */
+.bg-dark-custom {
+  background-color: #b91c1c !important; /* BK Red */
+}
+
+.border-bottom {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  color: #ffffff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  letter-spacing: 0.5px;
+}
+
+.nav-link-custom {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0 !important;
+}
+
+.nav-link-custom:hover {
+  color: #ffffff !important;
+}
+
+/* Line animation under nav link: white line */
+.nav-link-custom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-link-custom:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* User Profile styling */
+.user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff !important;
+}
+
+.user-id {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: 400;
+}
+
+.avatar-container {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  padding: 2px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.avatar-container:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+}
+
+.user-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #b91c1c;
+}
+
+/* Footer styling: White-grayish background, black text */
+footer {
+  margin-top: auto;
+  background-color: #f1f5f9 !important; /* Nền trắng hơi xám */
+  border-top: 1px solid var(--border-color);
+  padding: 2rem 0;
+  color: #334155 !important;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+}
+
+/* Main Container styling */
+main {
+  flex-grow: 1;
+}
+
+.page-container {
+  padding: 4rem 1.5rem;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bg-surface {
+  background-color: var(--bg-surface) !important;
+}
+
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 1px solid var(--border-color) !important;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: rgba(185, 28, 28, 0.3) !important; /* Red border on hover */
+}
+
+.bg-primary-custom {
+  background-color: var(--accent-color) !important;
+  color: #ffffff;
+}
+
+/* Override standard Bootstrap buttons to match Red theme */
+.btn-primary {
+  background-color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+.btn-outline-primary {
+  color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+  color: #ffffff !important;
+}
+
+/* Custom override for cards to ensure they look good in light mode */
+.card.bg-dark {
+  background-color: var(--bg-surface) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.card.bg-dark .text-primary {
+  color: var(--accent-color) !important;
+}
+
+.card.bg-dark .text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.card.bg-dark .text-muted {
+  color: var(--text-secondary) !important;
+}
+
+.card.bg-dark hr {
+  background-color: var(--border-color) !important;
+  opacity: 1;
+}
