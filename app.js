@@ -6,9 +6,7 @@ const app = express();
 const port = 3000;
 
 // Routers
-const ac2030Router = require('./routes/ac2030');
-const ac2070Router = require('./routes/ac2070');
-const ac2080Router = require('./routes/ac2080');
+
 const ed2030GioiThieuRouter = require('./routes/ed2030/gioi_thieu');
 const ed2030XemVideoRouter = require('./routes/ed2030/xem_video');
 const ed2030Man1Router = require('./routes/ed2030/man_1');
@@ -25,19 +23,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Session
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'my-secret-key-btl',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }
-}));
 
-// Global variables for views
-app.use((req, res, next) => {
-    res.locals.user = req.session.user || null;
-    next();
-});
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -45,9 +31,6 @@ app.get('/', (req, res) => {
 
 // Mount modular routers
 app.use('/api', apiRouter);
-app.use('/ac2030', ac2030Router);
-app.use('/ac2070', ac2070Router);
-app.use('/ac2080', ac2080Router);
 
 // Redirect /ed2030 to the first lesson
 app.get('/ed2030', (req, res) => {
