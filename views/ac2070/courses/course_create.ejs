@@ -1,0 +1,48 @@
+<%- include('../../layouts/header') %>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="card-header bg-danger text-white p-4">
+                    <h3 class="mb-0 fw-bold text-center"><i class="bi bi-plus-circle me-2"></i> Tạo khóa học mới</h3>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    
+                    <% if (typeof error !== 'undefined' && error) { %>
+                        <div class="alert alert-danger" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i> <%= error %>
+                        </div>
+                    <% } %>
+
+                    <form action="/ac2070/course/create" method="POST" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label for="title" class="form-label fw-bold">Tên khóa học <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-control-lg" id="title" name="title" required placeholder="Nhập tên khóa học...">
+                            <div class="form-text">Đường dẫn (slug) sẽ được tự động tạo dựa trên tên này.</div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="cover_file" class="form-label fw-bold">Ảnh bìa khóa học</label>
+                            <input type="file" class="form-control form-control-lg mb-2" id="cover_file" name="cover_file" accept="image/*">
+                            <div class="form-text">Bạn có thể tải ảnh lên (tên file sẽ tự động đổi thành slug của khóa học).</div>
+                            
+                            <label for="cover_image" class="form-label fw-bold mt-2">Hoặc dùng link ảnh có sẵn (URL)</label>
+                            <input type="url" class="form-control" id="cover_image" name="cover_image" placeholder="https://example.com/image.jpg">
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="description" class="form-label fw-bold">Mô tả khóa học</label>
+                            <textarea class="form-control" id="description" name="description" rows="5" placeholder="Viết vài dòng giới thiệu về khóa học..."></textarea>
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <a href="/" class="btn btn-light btn-lg w-50 fw-bold border">Hủy</a>
+                            <button type="submit" class="btn btn-danger btn-lg w-50 fw-bold shadow-sm">Thêm Khóa Học</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../../layouts/footer') %>
