@@ -133,31 +133,43 @@ function submitClickerGame() {
     if (submitBtn) submitBtn.classList.add('d-none');
 
     let totalCorrectClicks = 0;
+    let summaryHtml = '<div class="mt-4 text-start"><h5 class="fw-bold mb-3">Chi tiết các câu:</h5><div class="mb-3"><span class="badge bg-success me-2">Chọn đúng</span><span class="badge bg-danger text-decoration-line-through me-2">Chọn sai</span><span class="badge bg-primary text-decoration-underline">Bỏ sót (Đáp án)</span></div><ul class="list-group shadow-sm">';
 
     for (let i = 0; i < clickerQuestions.length; i++) {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = clickerQuestions[i].html;
         const tempSpans = tempDiv.querySelectorAll('.clickable-word');
 
-        let targetIndices = new Set();
         tempSpans.forEach((span, idx) => {
-            if (span.classList.contains('target')) targetIndices.add(idx);
-        });
-
-        userSelections[i].forEach(idx => {
-            if (targetIndices.has(idx)) {
+            const isTarget = span.classList.contains('target');
+            const isUserSelected = userSelections[i].has(idx);
+            
+            if (isTarget && isUserSelected) {
                 totalCorrectClicks++;
             }
+            
+            if (isTarget && isUserSelected) {
+                span.outerHTML = `<span class="badge bg-success px-2 py-1 fs-6">${span.innerText}</span>`;
+            } else if (isTarget && !isUserSelected) {
+                span.outerHTML = `<span class="badge bg-primary text-decoration-underline px-2 py-1 fs-6">${span.innerText}</span>`;
+            } else if (!isTarget && isUserSelected) {
+                span.outerHTML = `<span class="badge bg-danger text-decoration-line-through px-2 py-1 fs-6">${span.innerText}</span>`;
+            } else {
+                span.outerHTML = `<span>${span.innerText}</span>`;
+            }
         });
+
+        summaryHtml += `<li class="list-group-item lh-lg p-3"><strong class="text-secondary d-block mb-1">Câu ${i+1}:</strong> <div class="fs-5">${tempDiv.innerHTML}</div></li>`;
     }
+    summaryHtml += '</ul></div>';
 
     setM3Score(totalCorrectClicks, totalTargetWords);
 
     renderClickerQuestion();
 
     const feedback = document.getElementById('clicker-feedback');
-    feedback.className = "alert alert-success text-center mt-3";
-    feedback.innerHTML = `<strong>Tổng kết Màn 3:</strong> Em đã tìm đúng ${totalCorrectClicks} / ${totalTargetWords} từ địa phương.`;
+    feedback.className = "alert alert-info text-center mt-4";
+    feedback.innerHTML = `<strong class="fs-5">Tổng kết Màn 3: Em đã tìm đúng ${totalCorrectClicks} / ${totalTargetWords} từ địa phương.</strong>${summaryHtml}`;
     feedback.classList.remove('d-none');
 
     const finalBtn = document.getElementById('clicker-next-btn');

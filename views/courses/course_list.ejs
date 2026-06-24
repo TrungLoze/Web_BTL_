@@ -1,0 +1,35 @@
+<%- include('../layouts/header') %>
+<link rel="stylesheet" href="/css/home.css">
+
+<div class="container py-5">
+
+    <h2 class="mt-2 fw-bold">Khóa học nổi bật</h2>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+            <% if (courses && courses.length > 0) { %>
+                <% courses.forEach(course => { %>
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+                            <img src="<%= course.cover_image || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=600&auto=format&fit=crop' %>"
+                                class="card-img-top" alt="<%= course.title %>" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold"><%= course.title %></h5>
+                                <p class="card-text text-muted"><%= course.description || 'Chưa có mô tả cho khóa học này.' %></p>
+                            </div>
+                            <div class="card-footer bg-white border-0 pb-4 pt-0">
+                                <a href="/ac2070/course/<%= course.slug %>" class="btn btn-outline-danger w-100 fw-bold rounded-pill">Bắt đầu học ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="col-12">
+                    <div class="alert alert-secondary text-center" role="alert">
+                        Hiện tại chưa có khóa học nào. Vui lòng quay lại sau!
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+<%- include('../layouts/footer') %>

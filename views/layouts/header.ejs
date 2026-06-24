@@ -47,15 +47,35 @@
                         </li>
                     </ul>
 
-                    <!-- Right: User Avatar -->
-                    <div class="d-flex align-items-center justify-content-center mt-3 mt-lg-0">
-                        <div class="user-info text-end me-3">
-                            <div class="user-name">Nguyễn Hoàng Trung</div>
-                            <div class="user-id">202412019</div>
-                        </div>
-                        <div class="avatar-container">
-                            <img src="/images/Anh_Trung.jpg" alt="User Avatar" class="user-avatar">
-                        </div>
+                    <!-- Right: User Avatar / Login -->
+                    <div class="d-flex align-items-center justify-content-center mt-3 mt-lg-0 ms-auto">
+                        <% if (locals.user) { %>
+                            <div class="dropdown">
+                                <a class="btn btn-dark dropdown-toggle border-0 d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                                    <div class="user-info text-end me-2 d-none d-lg-block">
+                                        <div class="user-name fw-bold text-white"><%= user.full_name %></div>
+                                        <div class="user-id text-light" style="font-size: 0.8rem;"><%= user.role === 'admin' ? 'Quản trị viên' : 'Học viên' %></div>
+                                    </div>
+                                    <div class="avatar-container">
+                                        <img src="/images/Anh_Trung.jpg" alt="User Avatar" class="user-avatar rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow">
+                                    <li><a class="dropdown-item fw-bold" href="/ac2070/profile"><i class="bi bi-person-badge me-2"></i> Hồ sơ của tôi</a></li>
+                                    <li><a class="dropdown-item fw-bold" href="/ac2070/profile/courses"><i class="bi bi-journal-bookmark-fill me-2"></i> Khóa học của tôi</a></li>
+                                    <% if (user.role === 'admin') { %>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><h6 class="dropdown-header text-uppercase">Admin Panel</h6></li>
+                                        <li><a class="dropdown-item text-primary fw-bold" href="/ac2070/course/dashboard"><i class="bi bi-speedometer2 me-1"></i> Quản lý khóa học</a></li>
+                                        <li><a class="dropdown-item text-primary fw-bold" href="/ac2070/users/dashboard"><i class="bi bi-people-fill me-1"></i> Quản lý người dùng</a></li>
+                                    <% } %>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" href="/ac2070/auth/logout"><i class="bi bi-box-arrow-right me-2"></i> Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                        <% } else { %>
+                            <a href="/ac2070/auth/login" class="btn btn-outline-light rounded-pill px-4 fw-bold">Đăng nhập</a>
+                        <% } %>
                     </div>
                 </div>
             </div>

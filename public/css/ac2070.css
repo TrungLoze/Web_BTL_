@@ -1,0 +1,115 @@
+/* Custom Styles cho trang AC2070 (kết hợp với Bootstrap 5) */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Header / Logo --- */
+.logo-icon {
+    background-color: #ef4444;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.search-bar-custom {
+    background-color: #f3f4f6;
+    border-radius: 25px;
+    padding: 8px 20px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+.search-bar-custom:focus-within {
+    background-color: #ffffff;
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+.search-bar-custom input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 250px;
+}
+
+/* --- Hero Banner --- */
+.hero-banner-custom {
+    background: linear-gradient(135deg, #111827 0%, #4b5563 100%);
+    border-radius: 20px;
+}
+.hero-badge {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 14px;
+}
+.highlight-red {
+    color: #ef4444;
+}
+.btn-primary-custom {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 8px;
+}
+.btn-primary-custom:hover {
+    background-color: #dc2626;
+    color: white;
+}
+.btn-play-custom {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    font-size: 18px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+.btn-play-custom:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: white;
+}
+
+/* --- Course Card --- */
+.course-card-custom {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+.course-card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+.course-cover-custom {
+    height: 160px;
+    width: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid #f3f4f6;
+}
+.btn-course-custom {
+    background-color: #eff6ff;
+    color: #2563eb;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    border-radius: 6px;
+    padding: 10px 15px;
+    border: none;
+    width: 100%;
+}
+.btn-course-custom:hover {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}

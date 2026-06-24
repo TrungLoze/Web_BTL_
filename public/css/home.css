@@ -1,0 +1,38 @@
+.hero-banner {
+    background-color: #111827;
+    background-image: 
+        /* Vệt sáng đỏ ở góc trên trái */
+        radial-gradient(at 0% 0%, rgba(202, 0, 45, 0.5) 0px, transparent 50%),
+        /* Vệt sáng xanh/tím ở góc dưới phải */
+        radial-gradient(at 100% 100%, rgba(49, 46, 129, 0.6) 0px, transparent 50%);
+}
+
+.hero-badge {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    backdrop-filter: blur(8px); /* Hiệu ứng kính mờ */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-title {
+    letter-spacing: -1px;
+}
+
+.hero-desc {
+    max-width: 550px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.btn-discover {
+    border-radius: 8px;
+}
+
+.btn-play {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+

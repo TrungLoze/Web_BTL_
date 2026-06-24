@@ -1,0 +1,72 @@
+<%- include('../layouts/header') %>
+<link rel="stylesheet" href="/css/auth.css">
+<div class="container flex-grow-1 py-5 d-flex justify-content-center align-items-center">
+    <div class="card p-4 rounded-4 text-white shadow-lg auth-card">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold mb-2">Đăng ký</h2>
+            <p class="text-light opacity-75">Tạo tài khoản mới tại <span class="text-danger fw-bold">HUST BOX-FED</span></p>
+        </div>
+
+        <% if (error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <form action="/ac2070/auth/register" method="POST">
+            <div class="mb-3">
+                <label for="full_name" class="form-label text-light">Họ và Tên</label>
+                <input type="text" class="form-control" id="full_name" name="full_name" required placeholder="Nguyễn Văn A">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label text-light">Địa chỉ Email</label>
+                <input type="email" class="form-control" id="email" name="email" required placeholder="example@hust.edu.vn">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label text-light">Mật khẩu</label>
+                <div class="input-group">
+                    <input type="password" class="form-control border-end-0" id="password" name="password" required placeholder="••••••••">
+                    <button class="btn btn-outline-light border-start-0 toggle-password toggle-password-btn" type="button" data-target="password">
+                        <i class="bi bi-eye text-dark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="confirm_password" class="form-label text-light">Xác nhận Mật khẩu</label>
+                <div class="input-group">
+                    <input type="password" class="form-control border-end-0" id="confirm_password" name="confirm_password" required placeholder="••••••••">
+                    <button class="btn btn-outline-light border-start-0 toggle-password toggle-password-btn" type="button" data-target="confirm_password">
+                        <i class="bi bi-eye text-dark"></i>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger w-100 py-2 fw-bold mb-3 auth-btn">ĐĂNG KÝ MỚI</button>
+            <div class="text-center text-light">
+                Đã có tài khoản? <a href="/ac2070/auth/login" class="text-danger text-decoration-none fw-bold">Đăng nhập</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const toggleButtons = document.querySelectorAll('.toggle-password');
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            const icon = this.querySelector('i');
+            
+            if (input.getAttribute('type') === 'password') {
+                input.setAttribute('type', 'text');
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                input.setAttribute('type', 'password');
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+    });
+</script>
+
+<%- include('../layouts/footer') %>

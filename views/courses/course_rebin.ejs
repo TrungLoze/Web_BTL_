@@ -1,0 +1,100 @@
+<%- include('../layouts/header') %>
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1"><i class="bi bi-trash text-danger me-2"></i> Thùng rác</h2>
+            <div class="d-flex align-items-center gap-3">
+                <p class="text-muted mb-0">Các khóa học đã bị xóa mềm</p>
+                <a href="/ac2070/course/dashboard" class="text-decoration-none fw-bold"><i class="bi bi-arrow-left"></i> Quay lại Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col" class="text-center" style="width: 5%">STT</th>
+                            <th scope="col" style="width: 25%">Tên khóa học</th>
+                            <th scope="col" style="width: 30%">Mô tả</th>
+                            <th scope="col" class="text-center" style="width: 20%">Khôi phục</th>
+                            <th scope="col" class="text-center" style="width: 20%">Xóa vĩnh viễn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (courses && courses.length > 0) { %>
+                            <% courses.forEach((course, index) => { %>
+                                <tr>
+                                    <td class="text-center fw-bold text-muted"><%= index + 1 %></td>
+                                    <td>
+                                        <div class="fw-bold text-dark"><%= course.title %></div>
+                                        <small class="text-muted">Slug: <%= course.slug %></small>
+                                    </td>
+                                    <td>
+                                        <div class="text-truncate" style="max-width: 250px;" title="<%= course.description %>">
+                                            <%= course.description || 'Chưa có mô tả' %>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <form action="/ac2070/course/<%= course.slug %>/restore" method="POST" class="d-inline">
+                                            <button type="submit" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-bold" title="Khôi phục">
+                                                <i class="bi bi-arrow-counterclockwise"></i> Khôi phục
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-bold" title="Xóa vĩnh viễn" 
+                                            data-bs-toggle="modal" data-bs-target="#forceDeleteCourseModal" 
+                                            onclick="setForceDeleteForm('/ac2070/course/<%= course.slug %>/force-delete', '<%= course.title %>')">
+                                            <i class="bi bi-trash-fill"></i> Xóa vĩnh viễn
+                                        </button>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5" class="text-center py-5 text-muted">
+                                    Thùng rác đang trống.
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xác nhận Xóa vĩnh viễn -->
+<div class="modal fade" id="forceDeleteCourseModal" tabindex="-1" aria-labelledby="forceDeleteCourseModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow rounded-4">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title fw-bold text-danger" id="forceDeleteCourseModalLabel">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> Cảnh báo hệ thống
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fs-5 text-center py-4">
+        Bạn có chắc chắn muốn xóa <strong class="text-danger">VĨNH VIỄN</strong> khóa học <strong id="forceDeleteCourseName" class="text-dark"></strong> không?<br>
+        <span class="fs-6 text-muted">Hành động này sẽ xóa dữ liệu ra khỏi cơ sở dữ liệu và KHÔNG THỂ khôi phục!</span>
+      </div>
+      <div class="modal-footer border-top-0 d-flex justify-content-center gap-3 pb-4">
+        <form id="forceDeleteCourseForm" method="POST" action="">
+            <button type="submit" class="btn btn-danger btn-lg px-4 fw-bold">Xóa vĩnh viễn</button>
+        </form>
+        <button type="button" class="btn btn-secondary btn-lg px-4 fw-bold" data-bs-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    function setForceDeleteForm(actionUrl, courseTitle) {
+        document.getElementById('forceDeleteCourseForm').action = actionUrl;
+        document.getElementById('forceDeleteCourseName').innerText = courseTitle;
+    }
+</script>
+<%- include('../layouts/footer') %>

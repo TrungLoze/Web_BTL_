@@ -161,17 +161,32 @@ function showSummary() {
     
     let summaryHtml = '<h5>Kết quả của em:</h5><ul class="list-group mb-3">';
     let correctCount = 0;
+    
+    // Calculate correct count first
+    for(let i=0; i<dialogQuestions.length; i++) {
+        if (userAnswers[i] === dialogQuestions[i].correct) {
+            correctCount++;
+        }
+    }
+    
+    const isFinal = correctCount === dialogQuestions.length || isRetryMode;
     let wrongIndices = [];
     
     for(let i=0; i<dialogQuestions.length; i++) {
         const q = dialogQuestions[i];
         const isCorrect = userAnswers[i] === q.correct;
-        if (isCorrect) correctCount++;
-        else wrongIndices.push(i);
+        if (!isCorrect) wrongIndices.push(i);
         
         const statusIcon = isCorrect ? '<i class="bi bi-check-circle-fill text-success"></i>' : '<i class="bi bi-x-circle-fill text-danger"></i>';
         const itemClass = isCorrect ? 'list-group-item-success' : 'list-group-item-danger';
-        summaryHtml += `<li class="list-group-item ${itemClass}">${statusIcon} Câu ${i+1}: ${isCorrect ? 'Đúng' : 'Sai'} (Đã chọn: <strong>${userAnswers[i] || 'Chưa chọn'}</strong>)</li>`;
+        
+        let answerText = `Đã chọn: <strong>${userAnswers[i] || 'Chưa chọn'}</strong>`;
+        if (isFinal) {
+            answerText += ` | Đáp án đúng: <strong class="text-primary">${q.correct}</strong>`;
+            answerText += `<br><small class="text-muted d-block mt-1"><i class="bi bi-info-circle me-1"></i><em>${q.explanation}</em></small>`;
+        }
+        
+        summaryHtml += `<li class="list-group-item ${itemClass} p-3">${statusIcon} <strong class="fs-6">Câu ${i+1}: ${isCorrect ? 'Đúng' : 'Sai'}</strong><br>${answerText}</li>`;
     }
     summaryHtml += '</ul>';
     

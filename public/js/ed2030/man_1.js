@@ -180,17 +180,27 @@ function submitDragGame() {
     
     let correctCount = 0;
     
+    let summaryHtml = '<div class="mt-4 text-start"><h5>Bảng Kết Quả Chi Tiết:</h5><div class="table-responsive"><table class="table table-bordered table-striped text-center align-middle"><thead><tr class="table-primary"><th>Hình ảnh (Miền Bắc)</th><th>Đáp án của em</th><th>Đáp án đúng (Từ địa phương)</th><th>Kết quả</th></tr></thead><tbody>';
+    
     dropZones.forEach(zone => {
         const zoneMatch = zone.match;
         const wordId = placedPairs[zoneMatch];
         const card = document.querySelector(`.dropzone-card[data-match="${zoneMatch}"]`);
         const label = card.querySelector('.dropzone-label');
         
+        let userWordText = 'Chưa ghép';
+        let isCorrect = false;
+
+        const correctWordObj = draggableWords.find(w => w.match === zoneMatch);
+        const correctWordText = correctWordObj ? correctWordObj.word : '';
+        
         if (wordId) {
             const wordCard = document.getElementById(wordId);
+            userWordText = wordCard.innerText;
             const wordMatch = wordCard.getAttribute('data-match');
             if (wordMatch === zoneMatch) {
                 correctCount++;
+                isCorrect = true;
                 label.className = 'dropzone-label badge bg-success mt-2 fs-6 text-wrap';
                 card.style.border = '2px solid #198754';
             } else {
@@ -198,11 +208,24 @@ function submitDragGame() {
                 card.style.border = '2px solid #dc3545';
             }
         }
+        
+        const statusIcon = isCorrect ? '<i class="bi bi-check-circle-fill text-success fs-5"></i>' : '<i class="bi bi-x-circle-fill text-danger fs-5"></i>';
+        
+        summaryHtml += `
+            <tr>
+                <td class="fw-bold text-dark">${zone.title}</td>
+                <td class="${isCorrect ? 'text-success' : 'text-danger'}">${userWordText}</td>
+                <td class="text-primary fw-bold">${correctWordText}</td>
+                <td>${statusIcon}</td>
+            </tr>
+        `;
     });
+    
+    summaryHtml += '</tbody></table></div></div>';
 
     const dragFeedback = document.getElementById('drag-feedback');
-    dragFeedback.className = "alert alert-info text-center mt-3";
-    dragFeedback.innerText = `Em đã ghép đúng ${correctCount} / ${draggableWords.length} thẻ. Nhấn nút tiếp tục để qua Màn 2.`;
+    dragFeedback.className = "alert alert-info text-center mt-4";
+    dragFeedback.innerHTML = `<strong>Em đã ghép đúng ${correctCount} / ${draggableWords.length} thẻ. Nhấn nút tiếp tục để qua Màn 2.</strong>${summaryHtml}`;
     dragFeedback.classList.remove('d-none');
     
     setM1Score(correctCount, draggableWords.length);

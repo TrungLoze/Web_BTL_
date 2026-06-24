@@ -1,4 +1,6 @@
+require('dotenv').config();
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const app = express();
 const port = 3000;
@@ -22,6 +24,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Session
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'my-secret-key-btl',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
+}));
+
+// Global variables for views
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+});
 
 app.get('/', (req, res) => {
     res.render('index');
